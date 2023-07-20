@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.allDemo.dao.UserDao">
+<resultMap id="userResultMap" type="com.example.allDemo.entity.User">
+    <id property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="age" column="age"/>
+    <result property="sex" column="sex"/>
+    <result property="work" column="work"/>
+    <result property="address" column="address"/>
+    <result property="educationBackground" column="educationBackground"/>
+  </resultMap>
+  <!--列表查询  -->
+    <select id="selectUser"  resultType="com.example.allDemo.entity.User">
+    select id, name, age, sex, work, address,educationBackground
+    from user
+  </select>
+  <!--列表增加  -->
+ <insert id="insertUser" parameterType="com.example.allDemo.entity.User">
+    insert into user (id, name, age, sex, work, address, educationBackground)
+    values (#{id}, #{name}, #{age}, #{sex}, #{work}, #{address}, #{educationBackground})
+  </insert>
+<!--列表改正  -->
+<update id="updateUser" parameterType="com.example.allDemo.entity.User">
+    UPDATE user
+    SET name = #{name}, age = #{age}, sex = #{sex}, work = #{work}, address = #{address}, educationBackground = #{educationBackground}
+    WHERE id = #{id}
+  </update>
+
+
+<!--列表删除  -->
+  <delete id="deleteUser" parameterType="int">
+    delete from user
+    where id = #{id}
+  </delete>
+
+</mapper>
+
+
